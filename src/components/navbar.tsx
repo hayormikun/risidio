@@ -2,14 +2,26 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
-import { Sidebar } from "./sidebar";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { Heading } from "./heading";
+import { AuthContext } from "@/contexts/AuthContext";
+import { usePathname, useRouter } from "next/navigation";
+import { NftContext } from "@/contexts/NftContext";
 
 export const Navbar = () => {
+  const router = useRouter();
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const { signedIn, setSignedIn } = useContext(AuthContext);
+  const { nft } = useContext(NftContext);
+
   return (
-    <nav className="bg-[#fafafa] h-auto fixed w-full top-0 box-border py-4">
+    <nav
+      style={{
+        backgroundColor: pathname.includes("/wallet") ? "#E6E9F2" : "#FAFAFA",
+      }}
+      className="h-auto fixed z-[9999] w-full top-0 box-border py-4"
+    >
       <div className="absolute right-4">
         <Transition
           as={Fragment}
@@ -21,7 +33,7 @@ export const Navbar = () => {
           leaveTo="transform opacity-0 scale-95"
           show={isOpen}
         >
-          <aside className="flex w-[30.75em] h-[68.1vh] rounded-xl overflow-hidden box-border">
+          <aside className="flex w-full lg:w-[30.75em] h-full lg:h-[68.1vh] rounded-xl overflow-hidden box-border">
             <div className="bg-[#D4D4D4] opacity-25 w-8 flex justify-center">
               <i
                 onClick={() => setIsOpen(!isOpen)}
@@ -59,9 +71,9 @@ export const Navbar = () => {
                 </svg>
               </i>
             </div>
-            <div className="w-full bg-white border-2 border-[#02071D] rounded-xl p-6 box-border">
+            <div className="w-full bg-white border-2 border-[#02071D] rounded-xl p-4 md:p-6 box-border">
               <div className="flex justify-between items-center">
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 md:gap-3">
                   <Image
                     src={"/assets/avi.png"}
                     width={50}
@@ -71,7 +83,7 @@ export const Navbar = () => {
                   />
 
                   <span className="flex items-center gap-2">
-                    <p className="text-base text-[#02071D]">STV6Q...4Z7WD</p>
+                    <p className="text-xs md:text-base text-[#02071D]">STV6Q...4Z7WD</p>
                     <i>
                       <svg
                         width="20"
@@ -88,7 +100,13 @@ export const Navbar = () => {
                     </i>
                   </span>
                 </div>
-                <i>
+                <i
+                  onClick={() => {
+                    setSignedIn(false);
+                    setIsOpen(!isOpen);
+                  }}
+                  className="cursor-pointer"
+                >
                   <svg
                     width="26"
                     height="26"
@@ -115,22 +133,27 @@ export const Navbar = () => {
 
               <section className="w-full">
                 <Heading title="Your NFTs" />
-                <div className="w-full flex flex-col items-center">
-                  <p className="text-[#617587] text-2xl text-center my-12">You don&apos;t own any NFTs yet</p>
-                  <button
-                    type="button"
-                    className="bg-[#23252B] text-[#fafafa] w-[15.5em] h-[4.2em] rounded-[5.44em] text-base font-semibold"
-                  >
-                    Start shopping
-                  </button>
-                </div>
-                <Image
-                  src={"/assets/future.png"}
-                  width={391}
-                  height={227}
-                  alt={"marketplace logo"}
-                  className="rounded-lg"
-                />
+                {nft ? (
+                  <Image
+                    src={nft.src}
+                    width={391}
+                    height={227}
+                    alt={nft.nft}
+                    className="rounded-lg w-[80%] lg:w-full"
+                  />
+                ) : (
+                  <div className="w-full flex flex-col items-center">
+                    <p className="text-[#617587] text-2xl text-center my-12">
+                      You don&apos;t own any NFTs yet
+                    </p>
+                    <button
+                      type="button"
+                      className="bg-[#23252B] text-[#fafafa] w-full lg:w-[15.5em] h-[4.2em] rounded-[5.44em] text-base font-semibold"
+                    >
+                      Start shopping
+                    </button>
+                  </div>
+                )}
               </section>
             </div>
           </aside>
@@ -143,15 +166,18 @@ export const Navbar = () => {
             width={255}
             height={39}
             alt={"marketplace logo"}
+            className="w-[70%] md:w-full"
           />
         </Link>
 
         <button
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={() => {
+            signedIn ? setIsOpen(!isOpen) : router.push("/wallet");
+          }}
           className="flex w-fit h-fit px-6 py-[1.31em] items-center justify-end border border-[#23252B] rounded-[5.44rem]"
         >
-          <p className="font-semibold text-base text-[#23252B]">
-            Connect Wallet
+          <p className="font-semibold text-xs md:text-base text-[#23252B]">
+            {signedIn ? "Account" : "Connect Wallet"}
           </p>
         </button>
       </div>

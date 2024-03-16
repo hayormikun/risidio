@@ -12,6 +12,7 @@ export const Footer = () => {
             width={176}
             height={27}
             alt={"marketplace logo"}
+            className="w-[70%] md:w-full"
           />
         </Link>
         <div className="flex w-fit gap-6 items-center justify-end">

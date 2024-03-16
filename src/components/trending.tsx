@@ -1,6 +1,8 @@
+"use client"
+import { AuthContext } from "@/contexts/AuthContext";
 import Image from "next/image";
-import Link from "next/link";
-import { Fragment } from "react";
+import { useRouter } from "next/navigation";
+import { useContext } from "react";
 
 type FeaturedProps = {
   bg: string;
@@ -9,12 +11,15 @@ type FeaturedProps = {
 };
 
 export const Trending = ({ bg, btns, description }: FeaturedProps) => {
+  const router = useRouter();
+  const { signedIn } = useContext(AuthContext);
+
   return (
     <section
       className={`bg-[${bg}] flex flex-col w-full min-h-[518] rounded-[1.875em] box-border`}
     >
-      <div className="h-full w-full flex justify-between items-center p-12 box-border">
-        <div className="w-fit max-w-[46.60%] flex flex-col gap-6">
+      <div className="h-full w-full flex flex-col-reverse lg:flex-row justify-between items- gap-6 p-12 box-border">
+        <div className="w-full lg:max-w-[46.60%] flex flex-col justify-start gap-6">
           <div className="flex flex-col gap-4">
             <button
               type="button"
@@ -24,10 +29,10 @@ export const Trending = ({ bg, btns, description }: FeaturedProps) => {
             </button>
 
             <div className="block">
-              <span className="text-2xl text-[#617587]">
+              <span className="text-base lg:text-2xl text-[#617587]">
                 Night sky collection
               </span>
-              <h2 className="text-[4em] text-[#000000] font-extrabold">
+              <h2 className="text-[2rem] lg:text-[4em] text-[#000000] font-extrabold">
                 With the stars{" "}
               </h2>
             </div>
@@ -49,9 +54,14 @@ export const Trending = ({ bg, btns, description }: FeaturedProps) => {
             </div>
           </div>
           {btns && (
-            <div className="flex items-center gap-3">
+            <div className="flex flex-col lg:flex-row items-center gap-3">
               <button
                 type="button"
+                onClick={()=> {
+                  signedIn
+                    ? router.push("/collection/1")
+                    : router.push("/wallet");
+                }}
                 className="bg-[#23252B] text-[#fafafa] w-[15.5em] h-[4.2em] rounded-[5.44em] text-base font-semibold"
               >
                 Buy
@@ -59,6 +69,7 @@ export const Trending = ({ bg, btns, description }: FeaturedProps) => {
 
               <button
                 type="button"
+                onClick={()=> router.push("/collection/1")}
                 className="bg-transparent text-[##23252B] w-[15.5em] h-[4.2em] rounded-[5.44em] border border-[#23252B] text-base font-semibold"
               >
                 See collection
@@ -67,7 +78,7 @@ export const Trending = ({ bg, btns, description }: FeaturedProps) => {
           )}
         </div>
 
-        <div className="flex w-fit">
+        <div className="flex w-fit mx-auto">
           <Image
             src={"/assets/stars.png"}
             width={437}

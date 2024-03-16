@@ -1,0 +1,40 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "src": "/assets/nfts/night-is-coming.png",
+      "nft": "Night is coming",
+      "price": "0.12BTC"
+    },
+    {
+      "id": 2,
+      "src": "/assets/nfts/with-the-stars.png",
+      "nft": "With the stars",
+      "price": "0.12BTC"
+    },
+    {
+      "id": 3,
+      "src": "/assets/nfts/summer.png",
+      "nft": "Summer",
+      "price": "0.12BTC"
+    },
+    {
+      "id": 4,
+      "src": "/assets/nfts/quiet.png",
+      "nft": "Quiet",
+      "price": "0.12BTC"
+    },
+    {
+      "id": 5,
+      "src": "/assets/nfts/travel.png",
+      "nft": "Travel",
+      "price": "0.12BTC"
+    },
+    {
+      "id": 6,
+      "src": "/assets/nfts/the-rain.png",
+      "nft": "The rain",
+      "price": "0.12BTC"
+    }
+  ]
+}

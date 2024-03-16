@@ -1,0 +1,38 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "src": "/assets/sky.png",
+      "nft": "Night Sky",
+      "quantity": 120,
+      "artist": "Léa Jacquot",
+      "avatar": "/assets/avatar.png",
+      "description": "Lorem ipsum dolor sit amet, consectetur adicing elit, sed do eiusmod tempor...",
+      "minPrice": "0.12BTC",
+      "maxPrice": "0.18BTC"
+    },
+
+    {
+      "id": 2,
+      "src": "/assets/future.png",
+      "nft": "Future",
+      "quantity": 120,
+      "artist": "Julien",
+      "avatar": "/assets/julien.png",
+      "description": "Lorem ipsum dolor sit amet, consectetur adicing elit, sed do eiusmod tempor...",
+      "minPrice": "0.12BTC",
+      "maxPrice": "0.18BTC"
+    },
+    {
+      "id": 3,
+      "src": "/assets/nature.png",
+      "nft": "Mother Nature",
+      "quantity": 120,
+      "artist": "Maria",
+      "avatar": "/assets/maria.png",
+      "description": "Lorem ipsum dolor sit amet, consectetur adicing elit, sed do eiusmod tempor...",
+      "minPrice": "0.12BTC",
+      "maxPrice": "0.18BTC"
+    }
+  ]
+}
