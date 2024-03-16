@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} bg-[#fafafa]`}>
         <Navbar />
         <div className="w-[89.42%] mx-auto mt-[8rem]">{children}</div>
         <Footer />

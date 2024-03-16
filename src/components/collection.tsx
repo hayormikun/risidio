@@ -30,7 +30,7 @@ export const Collection = ({
           width={391}
           height={227}
           alt={nft}
-          className="rounded-3xl"
+          className="rounded-3xl w-full"
         />
         <div className="p-4 flex flex-col gap-4">
           <div className="flex w-full items-center justify-between mx-auto">

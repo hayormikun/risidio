@@ -6,7 +6,7 @@ import Image from "next/image";
 export default function Home() {
   return (
     <main className="flex flex-col">
-      <Trending />
+      <Trending bg="#E6E9F2" btns={true} description=""/>
 
       <section className="mt-12 mb-24">
         <Heading title="Collections" />
